@@ -1,8 +1,9 @@
 
 import React from 'react'
 import d3 from 'd3'
+//https://bost.ocks.org/mike/path/
 
-class StreamingTest extends React.Component{
+class StreamingOne extends React.Component{
     constructor(props) {
         super(props)
         this.state={
@@ -49,6 +50,9 @@ class StreamingTest extends React.Component{
         var xScale = d3
             .scale.linear()
             .domain([0, parent.props.count - 1]);
+        // var xScale = d3.time.scale()
+        //     .domain([new Date(), d3.time.day.offset(new Date(), 1)])
+        //     .rangeRound([0, width - margin - margin]);
 
         var yScale = d3
             .scale.linear()
@@ -56,7 +60,12 @@ class StreamingTest extends React.Component{
 
         var xAxis = d3.svg.axis()
             .scale(xScale)
-            .orient("bottom");
+            .orient("bottom")
+            // .ticks(d3.time.days, 1)
+            // .tickFormat(d3.time.format('%a %d'))
+            // .tickSize(0)
+            // .tickPadding(8)
+            ;
 
         var yAxis = d3.svg.axis()
             .scale(yScale)
@@ -181,9 +190,9 @@ class StreamingTest extends React.Component{
             </div>
     )}
 }
-export default StreamingTest
+export default StreamingOne
 
-StreamingTest.propTypes = {
+StreamingOne.propTypes = {
     lines: React.PropTypes.number.isRequired,
     count: React.PropTypes.number.isRequired,
     new_data: React.PropTypes.array,
@@ -191,7 +200,7 @@ StreamingTest.propTypes = {
     color: React.PropTypes.array
 }
 
-StreamingTest.defaultProps = {
+StreamingOne.defaultProps = {
     lines: 2,
     count: 100,
     new_data: [],

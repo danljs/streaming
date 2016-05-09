@@ -1,7 +1,8 @@
 // libs
 import React from 'react'
 import d3 from 'd3'
-import Streaming from './streaming.jsx'
+import StreamingOne from './streaming_one.jsx'
+import StreamingTwo from './streaming_two.jsx'
 
 // inits
 class StreamingTest extends React.Component{
@@ -12,7 +13,8 @@ class StreamingTest extends React.Component{
 
             count : 100,
             init_data : [],
-            new_data : [0,0,0]
+            new_data : [0,0,0],
+            show_one : true
         }
     }
 
@@ -60,25 +62,35 @@ class StreamingTest extends React.Component{
         var parent = this
         return (<div className='d3-page'>
         {
-            this.state.init_data.length === 0? '':
-                <Streaming
+            parent.state.init_data.length === 0? '':
+                parent.state.show_one?
+                <StreamingOne
                     init_data = {this.state.init_data}
                     color = {['#2200ff','#00ff00','#ffe100']}
                     new_data = {this.state.new_data}
                     count = {this.state.count}
                     lines = {3}
-                ></Streaming>
+                ></StreamingOne>
+                :
+                <StreamingTwo
+                    init_data = {this.state.init_data}
+                    color = {['#2200ff','#00ff00','#ffe100']}
+                    new_data = {this.state.new_data}
+                    count = {this.state.count}
+                    lines = {3}
+                ></StreamingTwo>
         }
             <button onClick={e=>{
-            parent.setState({
-                new_data:[
-                    parent.random(0, .2)(),
-                    parent.random(0, 11.4)(),
-                    parent.random(0, .8)()
-                ]
-            })
-        }}>add data</button>
-        
+                parent.setState({
+                    new_data:[
+                        parent.random(0, .2)(),
+                        parent.random(0, 11.4)(),
+                        parent.random(0, .8)()
+                    ]
+                })
+            }}>add data</button>
+            <button onClick={e=>{parent.setState({show_one:true})}}>show one</button>
+            <button onClick={e=>{parent.setState({show_one:false})}}>show two</button>
         </div>
     )}
 }
