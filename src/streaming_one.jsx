@@ -1,7 +1,6 @@
 
 import React from 'react'
 import d3 from 'd3'
-//https://bost.ocks.org/mike/path/
 
 class StreamingOne extends React.Component{
     constructor(props) {

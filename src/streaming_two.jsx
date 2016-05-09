@@ -2,6 +2,7 @@
 import React from 'react'
 import d3 from 'd3'
 //https://bost.ocks.org/mike/path/
+//http://codepen.io/atticweb/pen/GZKvgv
 
 class StreamingTwo extends React.Component{
     constructor(props) {
@@ -51,10 +52,6 @@ class StreamingTwo extends React.Component{
             duration = 750,
             now = new Date(Date.now() - duration),
             count = 0;
-
-        // var xScale = d3
-        //     .scale.linear()
-        //     .domain([0, parent.props.count - 1]);
 
         var xScale = d3.time.scale()
             .domain([now - (n - 2) * duration, now - duration])
